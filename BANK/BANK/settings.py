@@ -123,10 +123,20 @@ STATIC_URL = '/static/'
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 # Additional locations of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    # Add more directories if needed
+    os.path.join(BASE_DIR, 'static', 'assets'),
+    os.path.join(BASE_DIR, 'static', 'js'),
+    os.path.join(BASE_DIR, 'static', 'images'),
+    os.path.join(BASE_DIR, 'static', 'assets', 'css'),
+    os.path.join(BASE_DIR, 'static', 'assets', 'fonts'),
+    os.path.join(BASE_DIR, 'static', 'vendor'),
+    os.path.join(BASE_DIR, 'static', 'vendor', 'bootstrap'),
+    os.path.join(BASE_DIR, 'static', 'vendor', 'bootstrap', 'css'),
+    os.path.join(BASE_DIR, 'static', 'vendor', 'bootstrap', 'js'),
+    os.path.join(BASE_DIR, 'static', 'vendor', 'jquery'),# Add more directories if needed
 ]
 
 # Directory where Django will collect static files for deployment
