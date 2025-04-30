@@ -13,6 +13,32 @@ SUPERUSER_NAME = 'Admin'
 SUPERUSER_PASSWORD = 'Me12sleep'
 from pathlib import Path
 
+import os
+import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name="dlzn0moho",
+    api_key="563396395915366",
+    api_secret="pCSSrLNvxfFSEzY4ZnaOiF5u93o"
+)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'crestline_support_database',
+        'USER': 'crestline_support_database_user',
+        'PASSWORD': '5B0xbvGWTJ8iAkbOyV9NON8OrWqALHQl',
+        'HOST': 'dpg-cv4aa9ggph6c738tlt8g-a.oregon-postgres.render.com',  # Check this
+        'PORT': '5432',
+    },
+     'OPTIONS': {
+            'sslmode': 'require',
+        },
+}
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,6 +54,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['axisfirstbank.onrender.com']
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dlzn0moho',
+    'API_KEY': '563396395915366',
+    'API_SECRET': 'pCSSrLNvxfFSEzY4ZnaOiF5u93o',
+}
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Application definition
 
@@ -40,6 +75,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bank_app',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -72,17 +109,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'BANK.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
