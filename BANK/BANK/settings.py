@@ -28,10 +28,10 @@ cloudinary.config(
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'crestline_support_database',
-        'USER': 'crestline_support_database_user',
-        'PASSWORD': '5B0xbvGWTJ8iAkbOyV9NON8OrWqALHQl',
-        'HOST': 'dpg-cv4aa9ggph6c738tlt8g-a.oregon-postgres.render.com',  # Check this
+        'NAME': 'axis_dbs',
+        'USER': 'axis_dbs_user',
+        'PASSWORD': 'mGSC8eKg4NCc83rUEr6OoFrNSRjlEoSS',
+        'HOST': 'dpg-d095me8dl3ps73a8e5ug-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
     },
      'OPTIONS': {
