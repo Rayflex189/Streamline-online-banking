@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4rd#l1#43)5*ebjwuix9)m+tzvb282c^!s%*0y8j0farxs+u6s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['axisfirstbank.onrender.com']
 
 
 # Application definition
