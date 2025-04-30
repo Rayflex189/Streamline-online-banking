@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'BANK.urls'
@@ -117,34 +118,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+import os
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
+
 STATIC_URL = '/static/'
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Define STATIC_ROOT to collect static files for production and staging
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+if not DEBUG:
+    # Use WhiteNoise storage for production
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Additional locations of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'static', 'assets'),
-    os.path.join(BASE_DIR, 'static', 'js'),
-    os.path.join(BASE_DIR, 'static', 'images'),
-    os.path.join(BASE_DIR, 'static', 'assets', 'css'),
-    os.path.join(BASE_DIR, 'static', 'assets', 'fonts'),
-    os.path.join(BASE_DIR, 'static', 'vendor'),
-    os.path.join(BASE_DIR, 'static', 'vendor', 'bootstrap'),
-    os.path.join(BASE_DIR, 'static', 'vendor', 'bootstrap', 'css'),
-    os.path.join(BASE_DIR, 'static', 'vendor', 'bootstrap', 'js'),
-    os.path.join(BASE_DIR, 'static', 'vendor', 'jquery'),# Add more directories if needed
+    # Add more directories if needed
 ]
-
-# Directory where Django will collect static files for deployment
-STATIC_ROOT = '/home/heritageonlinebank1/heritage/HCIP/staticfiles/'
-
-MEDIA_URL = '/images/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
