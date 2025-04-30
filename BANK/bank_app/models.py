@@ -6,6 +6,18 @@ import string
 
 def generate_account_number():
     return ''.join(str(random.randint(0, 9)) for _ in range(11))
+    
+class Transaction(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    amount = models.DecimalField(decimal_places=2, max_digits=10)
+    balance_after = models.DecimalField(decimal_places=2, max_digits=10)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.amount} - {self.user.username} - {self.timestamp}"
+
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
