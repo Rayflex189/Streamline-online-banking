@@ -21,8 +21,8 @@ import cloudinary.api
 
 cloudinary.config(
     cloud_name="dlzn0moho",
-    api_key="563396395915366",
-    api_secret="pCSSrLNvxfFSEzY4ZnaOiF5u93o"
+    api_key="525763261694127",
+    api_secret="CiTU5jmpTQ22ZfSWKV0EUoDYniM"
 )
 
 DATABASES = {
@@ -56,8 +56,8 @@ ALLOWED_HOSTS = ['axisfirstbank.onrender.com']
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
-    'API_KEY': '563396395915366',
-    'API_SECRET': 'pCSSrLNvxfFSEzY4ZnaOiF5u93o',
+    'API_KEY': '525763261694127',
+    'API_SECRET': 'CiTU5jmpTQ22ZfSWKV0EUoDYniM',
 }
 
 MEDIA_URL = '/media/'  # or any prefix you choose
