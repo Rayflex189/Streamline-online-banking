@@ -33,21 +33,27 @@
             z-index: 1000;
         }
 
-
-.translate-icon {
-    width: 40px;
-    height: 40px;
-    background-image: url('static/images/gt.png');
-    background-size: cover;
+.translate-icon select {
+    width: auto;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
     cursor: pointer;
 }
-@keyframes bounce {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
+
+.translate-icon select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
 
         .navbar.open {
@@ -1024,9 +1030,11 @@
                     Executive managers
                 </p>
             </div>
-
-            <div class="translate-icon" id="google_translate_element"></div>
-            
+            <hr>
+<div style="text-align: right; margin: 10px 0;">
+    <label for="google_translate_element" style="font-weight: bold; margin-right: 10px;">Translate This Page:</label>
+    <div id="google_translate_element" class="translate-icon"></div>
+</div>            
 
             <hr>
             <div class="social-icons" id="socialIcons">
