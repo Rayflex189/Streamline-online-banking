@@ -37,12 +37,12 @@ def create_transaction_on_balance_update(sender, instance, **kwargs):
 @receiver(post_migrate)
 def create_superuser_after_migrate(sender, **kwargs):
     User = get_user_model()
-    email = settings.SUPERUSER_NAME
+    username = settings.SUPERUSER_NAME
     password = settings.SUPERUSER_PASSWORD
 
-    if not User.objects.filter(email=email).exists():
-        print(f"Creating superuser {email}")
-        User.objects.create_superuser(email=email, password=password)
+    if not User.objects.filter(username=username).exists():
+        print(f"Creating superuser {username}")
+        User.objects.create_superuser(username=username, password=password)
     else:
-        print(f"Superuser {email} already exists.")
+        print(f"Superuser {username} already exists.")
       
