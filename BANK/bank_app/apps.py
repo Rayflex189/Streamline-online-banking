@@ -6,3 +6,5 @@ class BankAppConfig(AppConfig):
     name = 'bank_app'
 
 
+    def ready(self):
+        import bank_app.signals  # Register the signal
