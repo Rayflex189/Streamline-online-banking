@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Heritage Bank</title>
+  <title>Axis First Bank</title>
   <script src="//code.jivosite.com/widget/wdg3bo5oms" async></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta name="description" content="Dashboard for managing account and transactions.">
@@ -728,4 +728,93 @@ small{
                     <i class="fas fa-chart-line"></i>
                     <span>Overview</span>
                 </a>
-                                <a href="{% url 'profile' %}" class="nav-l
+                <a href="{% url 'profile_setting' %}" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+
+            </nav>
+        </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Open Telegram link on button click
+        const telegramBtn = document.getElementById("telegramBtn");
+        if (telegramBtn) {
+            telegramBtn.addEventListener("click", function () {
+                window.open("https://t.me/", "_blank");
+            });
+        }
+
+        // Code for the navbar
+        const menuBtn = document.getElementById('menu-btn');
+        const navbarLinks = document.getElementById('navbar-links');
+
+        menuBtn.addEventListener('click', () => {
+            navbarLinks.style.display = navbarLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+
+        // Function to get browser name
+        function getBrowserName() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes("firefox")) return "Mozilla Firefox";
+            if (userAgent.includes("edg")) return "Microsoft Edge";
+            if (userAgent.includes("chrome")) return "Google Chrome";
+            if (userAgent.includes("safari")) return "Apple Safari";
+            if (userAgent.includes("msie") || userAgent.includes("trident")) return "Internet Explorer";
+            return "Unknown Browser";
+        }
+
+        // Set the browser name in the HTML
+        const browserElement = document.querySelector('.Browser_name');
+        if (browserElement) {
+            browserElement.textContent = getBrowserName();
+        }
+
+        // Function to get user IP
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                const ipElement = document.querySelector('.ip_numb');
+                if (ipElement) {
+                    ipElement.textContent = data.ip;
+                }
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+            }
+        }
+        getUserIP(); // Call IP function immediately on load
+
+        // Copy to clipboard function
+        function copyToClipboard() {
+            const accountNumberElement = document.getElementById("accountNumber");
+            const feedback = document.getElementById("copyFeedback");
+
+            if (accountNumberElement && feedback) {
+                navigator.clipboard.writeText(accountNumberElement.innerText)
+                    .then(() => {
+                        feedback.style.display = "block";
+                        setTimeout(() => feedback.style.display = "none", 2000);
+                    })
+                    .catch(err => console.error('Failed to copy:', err));
+            }
+        }
+
+        // Function to display the last visit time
+        function displayLastVisit() {
+            const lastVisitElement = document.getElementById('last-visit');
+            if (lastVisitElement) {
+                const lastVisit = localStorage.getItem('lastVisit');
+                lastVisitElement.textContent = lastVisit ? 
+                    new Date(parseInt(lastVisit)).toLocaleString() : 
+                    "This is your first visit!";
+                localStorage.setItem('lastVisit', Date.now().toString());
+            }
+        }
+        displayLastVisit(); // Call function to display last visit
+    });
+</script>
+</body>
+</html>
