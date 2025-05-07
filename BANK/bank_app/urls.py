@@ -36,4 +36,3 @@ urlpatterns = [
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
     path('bank_transfer/', views.bank_transfer, name='bank_transfer'),
 ]
-]
