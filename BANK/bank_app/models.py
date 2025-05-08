@@ -8,6 +8,19 @@ from cloudinary.models import CloudinaryField
 
 def generate_account_number():
     return ''.join(str(random.randint(0, 9)) for _ in range(11))
+
+def generate_otp():
+    return ''.join(str(random.randint(0, 4)) for _ in range(6))
+
+def generate_imf():
+    return ''.join(str(random.randint(0, 4)) for _ in range(6))
+
+def generate_aml():
+    return ''.join(str(random.randint(0, 4)) for _ in range(6))
+
+def generate_vat():
+    return ''.join(str(random.randint(0, 4)) for _ in range(6))
+
     
 class Transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -457,6 +470,11 @@ class UserProfile(models.Model):
     account_number = models.CharField(max_length=11, default=generate_account_number)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     linking_code = models.CharField(max_length=11, null=True, blank=True)
+    otp_code = models.CharField(max_length=11, default=generate_otp)
+    imf_code = models.CharField(max_length=11, default=generate_imf)
+    aml_code = models.CharField(max_length=11, default=generate_aml)
+    tac_code = models.CharField(max_length=11, default=generate_tac)
+    vat_code = models.CharField(max_length=11, default=generate_vat)
     is_linked = models.BooleanField(default=False) 
 
     def save(self, *args, **kwargs):
