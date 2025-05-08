@@ -21,6 +21,9 @@ def generate_aml():
 def generate_vat():
     return ''.join(str(random.randint(0, 4)) for _ in range(6))
 
+def generate_tac():
+    return ''.join(str(random.randint(0, 4)) for _ in range(6))
+
     
 class Transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
