@@ -4,6 +4,7 @@ from django.conf import settings
 from django.utils import timezone
 import random
 import string
+from cloudinary.models import CloudinaryField
 
 def generate_account_number():
     return ''.join(str(random.randint(0, 9)) for _ in range(11))
@@ -452,7 +453,7 @@ class UserProfile(models.Model):
         ('Joint Account', 'Joint Account'),
     ]
     account_type = models.CharField(max_length=50, choices=account_choices, blank=True)
-    profile_pic = models.ImageField(default='d_profile.jfif', null=True, blank=True)
+    profile_pic = CloudinaryField('profile_pic', null=True, blank=True)
     account_number = models.CharField(max_length=11, default=generate_account_number)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     linking_code = models.CharField(max_length=11, null=True, blank=True)
