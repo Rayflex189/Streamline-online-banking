@@ -226,6 +226,14 @@
                         <p class="error-message">{{ form.last_name.errors }}</p>
                     {% endif %}
                 </div>
+
+                <div class="input-box">
+                    <span class="details">Next of Kin</span>
+                    {{ form.next_of_kin }}
+                    {% if form.next_of_kin.errors %}
+                        <p class="error-message">{{ form.next_of_kin.errors }}</p>
+                    {% endif %}
+                </div>
         
                 <div class="input-box">
                     <span class="details">Phone Number</span>
