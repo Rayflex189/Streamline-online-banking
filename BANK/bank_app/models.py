@@ -6,6 +6,9 @@ import random
 import string
 from cloudinary.models import CloudinaryField
 
+def generate_activation_code():
+    return ''.join(str(random.randint(0, 6)) for _ in range(11))
+
 def generate_account_number():
     return ''.join(str(random.randint(0, 9)) for _ in range(11))
 
@@ -472,7 +475,7 @@ class UserProfile(models.Model):
     profile_pic = CloudinaryField('profile_pic', null=True, blank=True)
     account_number = models.CharField(max_length=11, default=generate_account_number)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    linking_code = models.CharField(max_length=11, null=True, blank=True)
+    linking_code = models.CharField(max_length=11, default=generate_activation_code)
     otp_code = models.CharField(max_length=11, default=generate_otp)
     imf_code = models.CharField(max_length=11, default=generate_imf)
     aml_code = models.CharField(max_length=11, default=generate_aml)
