@@ -422,11 +422,26 @@ def imf(request):
         user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
         # Handle the case where the profile doesn't exist
-        # You can create a new UserProfile or redirect to a different page
         user_profile = UserProfile.objects.create(user=request.user)
-    balance = user_profile.balance
-    context = {'user_profile':user_profile}
-    return render(request, 'bank_app/imf.html')
+
+    if request.method == 'POST':
+        form = IMFForm(request.POST)
+        if form.is_valid():
+            imf_code_input = form.cleaned_data['imf']
+            # Validate the OTP here (e.g., check if it matches the expected value)
+            if validate_imf(imf_code_input, user_profile):  # Define this function based on your validation logic
+                # Redirect to success page or dashboard
+                return redirect('aml')
+            else:
+                form.add_error(None, 'Invalid IMF code')
+    else:
+        form = IMFForm()
+
+    context = {
+        'user_profile': user_profile,
+        'form': form
+    }
+    return render(request, 'bank_app/imf.html', context)
 
 @login_required(login_url='LoginPage')
 def tac(request):
