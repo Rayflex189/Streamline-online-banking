@@ -169,24 +169,24 @@ button:hover {
       </div>
 
       <ul>
-          <li><a href="{% url 'profile' %}">Profile</a></li>
-          <li><a href="{% url 'reset_profile' %}">Settings</a></li>
+         <li><a href="{% url 'profile_setting' %}">Profile</a></li>
+          <li><a href="{% url 'reset_setting' %}">Settings</a></li>
           <li class="">
               <div class="top-navbar">
                   <div class="dropdown">
                       <button class="dropbtn">Integrated services</button>
                       <div class="dropdown-content">
-                          <a href="{% url 'coming_soon' %}">Rates</a>
-                          <a href="{% url 'loans' %}">Loans</a>
-                          <a href="{% url 'coming_soon' %}">Savings</a>
-                          <a href="{% url 'coming_soon' %}">Investments</a>
+                          <a href="#">Rates</a>
+                          <a href="#">Loans</a>
+                          <a href="#">Savings</a>
+                          <a href="#">Investments</a>
                       </div>
                   </div>
               </div>
           </li>
           <li><div id="translate-icon" class="translate-icon"><div id="google_translate_element"></div> </div>
           </li>
-          <li><a href="{% url 'analytics' %}">Analytics</a></li>
+          <li><a href="#">Analytics</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
       </ul>
   </div>
