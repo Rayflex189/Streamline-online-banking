@@ -20,18 +20,56 @@
             background-color: #57a89b;
             color: #333;
         }
-        .navbar {
-            background-color: #57a89b;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 250px;
-            transform: translateX(-250px);
-            transition: transform 0.3s ease-in-out;
-            z-index: 1000;
-        }
+  /* Sidebar Navbar */
+.navbar {
+    background-color: #57a89b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    padding-top: 60px; /* Space for toggle button */
+}
+
+.navbar.open {
+    transform: translateX(0);
+}
+
+.navbar a {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    padding: 15px 25px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Toggle Button */
+.navbar-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    background-color: #57a89b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1100;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar-toggle:hover {
+    background-color: #3b7f77;
+}
 
 .translate-icon select {
     width: auto;
@@ -1268,7 +1306,10 @@ icons.forEach(icon => {
         icon.classList.remove('animate');
     });
 });
-
+function toggleNavbar() {
+        const navbar = document.getElementById('sidebar');
+        navbar.classList.toggle('open');
+    }
   </script>
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
