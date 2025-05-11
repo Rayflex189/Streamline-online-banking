@@ -94,39 +94,82 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
-        .hero {
-            position: relative;
-            height: 100vh;
-            background: url('static/images/IMG-20250430-WA0019.jpg') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
-        .hero h1 {
-            font-size: 4em;
-            margin-bottom: 0.5em;
-            animation: fadeInDown 2s;
-        }
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 1em;
-            animation: fadeInUp 2s;
-        }
-        .hero button {
-            background-color: #57a89b;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-            animation: fadeIn 3s;
-        }
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #123456, #57a89b);
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 4em;
+    margin-bottom: 0.5em;
+    animation: slideInDown 1.5s ease-out;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    animation: slideInUp 2s ease-out;
+}
+
+.animated-btn {
+    background-color: #57a89b;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: fadeIn 3s ease;
+}
+
+.animated-btn:hover {
+    background-color: #3b7f77;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes slideInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
         .feedback {
             text-align: center;
         }
@@ -761,13 +804,15 @@
         <a href="#services">Money Management</a>
         <a href="#contact">Sponsors</a>
     </div>
-    <div class="hero content">
-        <div>
-            <h1 style="color:#fff">Welcome to Axis First Bank </h1>
-            <p>Your finances at your fingertips.</p>
-           <a href="{% url 'register' %}"> <button>Get Started</button></a>
-        </div>
+<div class="hero content">
+    <div class="hero-text">
+        <h1>Welcome to Axis First Bank</h1>
+        <p>Your finances at your fingertips.</p>
+        <a href="{% url 'register' %}">
+            <button class="animated-btn">Get Started</button>
+        </a>
     </div>
+</div>
     <div class="features content">
         <h2>Our Features</h2>
         <div class="feature">
