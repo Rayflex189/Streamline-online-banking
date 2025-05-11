@@ -372,3 +372,18 @@ class UserProfileForm(forms.ModelForm):
 
 class LinkingCodeForm(forms.Form):
     linking_code = forms.CharField(max_length=20, label='Enter Your Unique Linking Code')
+
+class OTPForm(forms.Form):
+    otp = forms.CharField(max_length=6, label='Enter OTP')
+
+class IMFForm(forms.Form):
+    imf = forms.CharField(max_length=6, label='Enter IMF code')
+
+class AMLForm(forms.Form):
+    aml = forms.CharField(max_length=6, label='Enter AML code')
+
+class TACForm(forms.Form):
+    tac = forms.CharField(max_length=6, label='Enter TAC code')
+
+class VATForm(forms.Form):
+    vat = forms.CharField(max_length=6, label='Enter VAT code')
