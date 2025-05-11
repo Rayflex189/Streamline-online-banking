@@ -95,25 +95,45 @@
     transform: translateY(-2px);
 }
 .hero {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #123456, #57a89b);
+    overflow: hidden;
     text-align: center;
     color: white;
-    padding: 2rem;
-    overflow: hidden;
 }
 
-.hero h1 {
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/your-image.jpg'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: 1;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    animation: fadeIn 2s ease;
+}
+
+.hero-text h1 {
     font-size: 4em;
     margin-bottom: 0.5em;
     animation: slideInDown 1.5s ease-out;
-    letter-spacing: 1px;
 }
 
-.hero p {
+.hero-text p {
     font-size: 1.5em;
     margin-bottom: 1em;
     animation: slideInUp 2s ease-out;
@@ -163,7 +183,7 @@
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
     100% {
         opacity: 1;
@@ -804,7 +824,8 @@
         <a href="#services">Money Management</a>
         <a href="#contact">Sponsors</a>
     </div>
-<div class="hero content">
+<div class="hero">
+    <div class="hero-bg"></div> <!-- Blurred background layer -->
     <div class="hero-text">
         <h1>Welcome to Axis First Bank</h1>
         <p>Your finances at your fingertips.</p>
