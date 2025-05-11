@@ -75,17 +75,25 @@
             border: none;
             cursor: pointer;
         }
-        .menu-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #57a89b;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            cursor: pointer;
-            z-index: 1001;
-        }
+      .menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #57a89b;
+    border: 2px solid #3e8278;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.menu-btn:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
         .hero {
             position: relative;
             height: 100vh;
