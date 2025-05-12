@@ -4,21 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="{% static 'css/dash.css' %}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="{% static 'images/web_logo.jpg' %}" type="image/x-icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Pending Transaction -  CrediTrust Bank</title>
+    <title>Pending Transaction -  Axis Bank</title>
     <style>
         /* Base styles and color scheme */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-size: cover;
+                position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/IMG-20250430-WA0019.jpg'); /* Replace with your image path */
+    background-size: cover;
     background-position: center;
-    background-repeat:no-repeat;
-    background-image: url("/static/images/bg.jpg");
+    filter: blur(4px); /* Reduced blur for visibility */
+    transform: scale(1);
+    animation: zoomInBackground 20s ease-in-out infinite alternate;
+    z-index: 1;
             height: 100%;
             overflow: hidden;
         }
@@ -29,8 +37,14 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-        }
-        @keyframes fadeIn {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    animation: fadeIn 2s ease;
+        }  
+      @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(-20px);
