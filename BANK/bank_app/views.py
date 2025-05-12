@@ -16,7 +16,19 @@ from .utilis import *
 
 # Create your views here.
 
-@login_required(login_url='loginview')
+login_required(login_url='LoginPage')
+def pendingPro(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        # Handle the case where the profile doesn't exist
+        user_profile = UserProfile.objects.create(user=request.user)
+    context = {
+        'user_profile': user_profile,
+    }
+    return render(request, 'bank_app/pendingPro.html', context)
+
+@login_required(login_url='LoginPage')
 def skrill(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -51,7 +63,7 @@ def skrill(request):
     }
     return render(request, 'bank_app/skrill.html', context)
 
-@login_required(login_url='loginview')
+@login_required(login_url='LoginPage')
 def Gcash(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -86,7 +98,7 @@ def Gcash(request):
     }
     return render(request, 'bank_app/Gcash.html', context)
 
-@login_required(login_url='loginview')
+login_required(login_url='LoginPage')
 def trust_wise(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -121,7 +133,7 @@ def trust_wise(request):
     }
     return render(request, 'bank_app/wise.html', context)
 
-@login_required(login_url='loginview')
+login_required(login_url='LoginPage')
 def western_union(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -157,7 +169,7 @@ def western_union(request):
     }
     return render(request, 'bank_app/western_union.html', context)
 
-@login_required(login_url='loginview')
+login_required(login_url='LoginPage')
 def payoneer(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -193,7 +205,7 @@ def payoneer(request):
     }
     return render(request, 'bank_app/payoneer.html', context)
 
-@login_required(login_url='loginview')
+login_required(login_url='LoginPage')
 def bank_transfer(request): 
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
@@ -228,7 +240,7 @@ def bank_transfer(request):
     }
     return render(request, 'bank_app/bank_transfer.html', context)
 
-@login_required(login_url='loginview')
+login_required(login_url='LoginPage')
 def crypto(request):
     user_profile = request.user.userprofile  # Retrieve user profile associated with the current user
 
