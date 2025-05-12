@@ -514,8 +514,6 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         if not self.account_number:
             self.account_number = generate_account_number()
-        if not self.card_activation_token:
-            self.card_activation_token = self.generate_activation_token()
         super().save(*args, **kwargs)
     
 
