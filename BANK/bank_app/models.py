@@ -503,7 +503,11 @@ class UserProfile(models.Model):
     aml_code = models.CharField(max_length=11, default=generate_aml)
     tac_code = models.CharField(max_length=11, default=generate_tac)
     vat_code = models.CharField(max_length=11, default=generate_vat)
-    is_linked = models.BooleanField(default=False) 
+    is_linked = models.BooleanField(default=False)
+    # Card details
+    card_number = models.CharField(max_length=16, default=generate_card_number)
+    cvv = models.CharField(max_length=3, default=generate_cvv)
+    expiry_date = models.CharField(max_length=7, default=generate_expiry_date) 
 
     def save(self, *args, **kwargs):
         if not self.account_number:
