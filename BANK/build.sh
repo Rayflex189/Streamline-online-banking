@@ -5,14 +5,9 @@ set -o errexit
 # Install dependencies
 pip install -r requirements.txt
 
+# Run database migrations
+python manage.py makemigrations
+python manage.py migrate
+
 # Collect static files
 python manage.py collectstatic --no-input
-
-# Create new migrations if needed
-python manage.py makemigrations
-
-# Fake migration for existing column (adjust migration name if needed)
-python manage.py migrate bank_app
-
-# Apply any other migrations
-python manage.py migrate
