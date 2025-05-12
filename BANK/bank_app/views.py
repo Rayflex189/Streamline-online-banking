@@ -412,7 +412,7 @@ def tac(request):
 
 @login_required(login_url='LoginPage')
 def kyc(request):
-        try:
+    try:
         user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
         user_profile = UserProfile.objects.create(user=request.user)
