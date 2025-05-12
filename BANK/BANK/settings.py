@@ -15,23 +15,23 @@ from pathlib import Path
 
 import os
 import dj_database_url
-import cloudinary
+"""import cloudinary
 import cloudinary.uploader
-import cloudinary.api
+import cloudinary.api"""
 
-cloudinary.config(
+"""cloudinary.config(
     cloud_name="dlzn0moho",
     api_key="525763261694127",
     api_secret="CiTU5jmpTQ22ZfSWKV0EUoDYniM"
-)
+)"""
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'axis_dbs_4flk',
-        'USER': 'axis_dbs_4flk_user',
-        'PASSWORD': '7eG5t4lUvPBXBFSgifBiUjtRugABSM8i',
-        'HOST': 'dpg-d0goe5ruibrs73fqdt8g-a.oregon-postgres.render.com',  # Check this
+        'NAME': 'axis_support_dbs',
+        'USER': 'axis_support_dbs_user',
+        'PASSWORD': 'Nj60ZsQojkl1iFEohtuLA6EOMC7pLK4d',
+        'HOST': 'dpg-d0gthmidbo4c73bo9v5g-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
     },
      'OPTIONS': {
@@ -54,11 +54,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['axisfirstbank.onrender.com']
 
-CLOUDINARY_STORAGE = {
+"""CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
     'API_KEY': '525763261694127',
     'API_SECRET': 'CiTU5jmpTQ22ZfSWKV0EUoDYniM',
-}
+}"""
 
 MEDIA_URL = '/media/'  # or any prefix you choose
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -75,8 +75,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bank_app',
-    'cloudinary',
-    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
