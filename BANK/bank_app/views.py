@@ -385,7 +385,7 @@ def imf(request):
             # Validate the OTP here (e.g., check if it matches the expected value)
             if validate_imf(imf_code_input, user_profile):  # Define this function based on your validation logic
                 # Redirect to success page or dashboard
-                return redirect('aml')
+                return redirect('pending')
             else:
                 form.add_error(None, 'Invalid IMF code')
     else:
