@@ -28,10 +28,10 @@ cloudinary.config(
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'axis_dbs',
-        'USER': 'axis_dbs_user',
-        'PASSWORD': 'mGSC8eKg4NCc83rUEr6OoFrNSRjlEoSS',
-        'HOST': 'dpg-d095me8dl3ps73a8e5ug-a.oregon-postgres.render.com',  # Check this
+        'NAME': 'axis_dbs_4flk',
+        'USER': 'axis_dbs_4flk_user',
+        'PASSWORD': '7eG5t4lUvPBXBFSgifBiUjtRugABSM8i',
+        'HOST': 'dpg-d0goe5ruibrs73fqdt8g-a.oregon-postgres.render.com',  # Check this
         'PORT': '5432',
     },
      'OPTIONS': {
