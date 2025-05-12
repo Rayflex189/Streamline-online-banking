@@ -6,8 +6,15 @@ import random
 import string
 from cloudinary.models import CloudinaryField
 
-def generate_activation_code():
-    return ''.join(str(random.randint(0, 6)) for _ in range(11))
+def generate_activation_token(self):
+    token = uuid.uuid4().hex
+    self.card_activation_token = token
+    self.save()
+    return token
+
+def generate_code(length=6):
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for _ in range(length))
 
 def generate_account_number():
     return ''.join(str(random.randint(0, 9)) for _ in range(11))
@@ -26,7 +33,22 @@ def generate_vat():
 
 def generate_tac():
     return ''.join(str(random.randint(0, 4)) for _ in range(6))
+# Assuming generate_code is defined somewhere in your code, for example:
 
+def generate_card_number():
+    # Generate a 16-digit card number
+    return ''.join([str(random.randint(0, 9)) for _ in range(16)])
+
+def generate_cvv():
+    # Generate a 3-digit CVV
+    return ''.join([str(random.randint(0, 9)) for _ in range(3)])
+
+def generate_expiry_date():
+    # Generates a random expiry date in the format MM/YYYY (e.g., 12/2026)
+    current_year = datetime.now().year
+    expiry_month = random.randint(1, 12)
+    expiry_year = random.randint(current_year, current_year + 5)  # Random year from current to 5 years ahead
+    return f"{expiry_month:02d}/{expiry_year}"
     
 class Transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
