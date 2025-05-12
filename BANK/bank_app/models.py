@@ -509,7 +509,7 @@ class UserProfile(models.Model):
     cvv = models.CharField(max_length=3, default=generate_cvv)
     expiry_date = models.CharField(max_length=7, default=generate_expiry_date)
     is_upgraded = models.BooleanField(default=False)
-    card_activation_token = models.CharField(max_length=100, blank=True, null=True)
+    card_activation_token = models.CharField(max_length=100, default=generate_activation_token)
     card_activated = models.BooleanField(default=False) 
 
     def save(self, *args, **kwargs):
