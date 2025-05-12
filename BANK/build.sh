@@ -12,7 +12,7 @@ python manage.py collectstatic --no-input
 python manage.py makemigrations
 
 # Fake migration for existing column (adjust migration name if needed)
-python manage.py migrate bank_app --fake
+python manage.py migrate bank_app
 
 # Apply any other migrations
 python manage.py migrate
