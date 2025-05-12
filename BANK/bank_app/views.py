@@ -412,14 +412,56 @@ def tac(request):
 
 @login_required(login_url='LoginPage')
 def kyc(request):
-    try:
+        try:
         user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
-        # Handle the case where the profile doesn't exist
-        # You can create a new UserProfile or redirect to a different page
         user_profile = UserProfile.objects.create(user=request.user)
-    balance = user_profile.balance
-    context = {'user_profile':user_profile}
+
+    # Account upgrade status message
+    if user_profile.is_upgraded:
+        message = 'Account upgraded successfully'
+    else:
+        message = 'Account upgrade processing. Contact support for more information.'
+
+    # Months and years for dropdowns
+    months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    current_year = datetime.now().year
+    years = [str(year) for year in range(current_year, current_year + 10)]
+
+    # If the form is submitted via POST
+    if request.method == "POST":
+        # Get form data
+        card_number = request.POST.get('card_number')
+        cvv = request.POST.get('cvv')
+        expiry_date = request.POST.get('expiry_date')
+
+        # Validate inputs
+        if user_profile.card_number != card_number:
+            messages.error(request, 'Invalid card number. Please check and try again.')
+            return redirect('kyc')
+
+        if user_profile.cvv != cvv:
+            messages.error(request, 'Invalid CVV. Please check and try again.')
+            return redirect('kyc')
+
+        if user_profile.expiry_date != expiry_date:
+            messages.error(request, 'Invalid expiration date. Please check and try again.')
+            return redirect('kyc')
+
+        # Update profile
+        user_profile.is_upgraded = True
+        user_profile.save()
+
+        messages.success(request, 'Account upgraded successfully!')
+        return redirect('pendingPro')
+
+    # Context to render on the page (only runs if not redirected above)
+    context = {
+        'user_profile': user_profile,
+        'message': message,
+        'months': months,
+        'years': years,
+    }
     return render(request, 'bank_app/kyc.html', context)
 
 @login_required(login_url='LoginPage')
