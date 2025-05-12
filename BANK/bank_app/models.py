@@ -6,12 +6,10 @@ from django.utils import timezone
 import random
 import string
 from cloudinary.models import CloudinaryField
+import uuid
 
 def generate_activation_token(self):
-    token = uuid.uuid4().hex
-    self.card_activation_token = token
-    self.save()
-    return token
+    return uuid.uuid4().hex
 
 def generate_code(length=6):
     characters = string.ascii_letters + string.digits
@@ -516,6 +514,8 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         if not self.account_number:
             self.account_number = generate_account_number()
+        if not self.card_activation_token:
+            self.card_activation_token = self.generate_activation_token()
         super().save(*args, **kwargs)
     
 
