@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .decorators import *
 from .models import *
+from .utilis import *
 
 # Create your views here.
 
