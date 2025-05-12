@@ -15,10 +15,18 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-size: cover;
+                position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/IMG-20250430-WA0019.jpg'); /* Replace with your image path */
+    background-size: cover;
     background-position: center;
-    background-repeat:no-repeat;
-    background-image: url("/static/images/learn-img.jpg");
+    filter: blur(4px); /* Reduced blur for visibility */
+    transform: scale(1);
+    animation: zoomInBackground 20s ease-in-out infinite alternate;
+    z-index: 1;
             height: 100%;
             overflow: hidden;
         }
