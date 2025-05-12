@@ -15,15 +15,15 @@ from pathlib import Path
 
 import os
 import dj_database_url
-"""import cloudinary
+import cloudinary
 import cloudinary.uploader
-import cloudinary.api"""
+import cloudinary.api
 
-"""cloudinary.config(
+cloudinary.config(
     cloud_name="dlzn0moho",
     api_key="525763261694127",
     api_secret="CiTU5jmpTQ22ZfSWKV0EUoDYniM"
-)"""
+)
 
 DATABASES = {
     'default': {
@@ -54,11 +54,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['axisfirstbank.onrender.com']
 
-"""CLOUDINARY_STORAGE = {
+CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dlzn0moho',
     'API_KEY': '525763261694127',
     'API_SECRET': 'CiTU5jmpTQ22ZfSWKV0EUoDYniM',
-}"""
+}
 
 MEDIA_URL = '/media/'  # or any prefix you choose
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
