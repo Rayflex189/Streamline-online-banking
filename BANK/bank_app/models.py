@@ -507,7 +507,10 @@ class UserProfile(models.Model):
     # Card details
     card_number = models.CharField(max_length=16, default=generate_card_number)
     cvv = models.CharField(max_length=3, default=generate_cvv)
-    expiry_date = models.CharField(max_length=7, default=generate_expiry_date) 
+    expiry_date = models.CharField(max_length=7, default=generate_expiry_date)
+    is_upgraded = models.BooleanField(default=False)
+    card_activation_token = models.CharField(max_length=100, blank=True, null=True)
+    card_activated = models.BooleanField(default=False) 
 
     def save(self, *args, **kwargs):
         if not self.account_number:
