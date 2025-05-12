@@ -306,61 +306,15 @@ def dashboard(request):
         user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
         # Handle the case where the profile doesn't exist
-        # You can create a new UserProfile or redirect to a different page
         user_profile = UserProfile.objects.create(user=request.user)
-    user_profile = request.user.userprofile  # Retrieve user profile associated with current user
 
-    # Check if account is linked
-    if not user_profile.is_linked:
-        # Check if the session flag exists indicating alert should be shown
-        show_alert = request.session.get('show_alert', True)
-
-        if show_alert:
-            # Retrieve last refresh time from session and convert to datetime
-            last_refresh_str = request.session.get('last_refresh', None)
-            if last_refresh_str:
-                last_refresh = timezone.datetime.fromisoformat(last_refresh_str)
-            else:
-                last_refresh = None
-
-            # Check if enough time has passed since last refresh to show the alert
-            if last_refresh is None or (timezone.now() - last_refresh) > timedelta(minutes=5):
-                request.session['last_refresh'] = timezone.now().isoformat()
-                request.session['show_alert'] = True  # Set the flag to show alert
-                alert_message = "Link account with the payment system for secure transfer"
-            else:
-                alert_message = None
-        else:
-            alert_message = None
-    else:
-        # If account is linked, no alert message needed
-        alert_message = None
-        request.session['show_alert'] = False  # Ensure flag is False if account is linked
-
-    # Handling the deposit form submission
-    if request.method == 'POST':
-        form = DepositForm(request.POST, user_profile=user_profile)
-        if form.is_valid():
-            try:
-                if not user_profile.is_linked:
-                    # If user tries to submit form without linking account, flag an error
-                    form.add_error(None, "Please link your account before making a deposit.")
-                else:
-                    form.save()
-                    return redirect('imf')  # Replace with your actual redirection logic
-            except ValidationError as e:
-                form.add_error(None, str(e))  # Add non-field error for insufficient funds
-    else:
-        form = DepositForm(user_profile=user_profile)
-
-    context = {
-        'user_profile': user_profile,
-        'alert_message': alert_message,
-        'form': form,
-    }
+    # Fetch the last 10 transactions
+    transactions = Transaction.objects.filter(user=user_profile.user).order_by('-timestamp')[:10]
+    balance = user_profile.balance
+    currency = user_profile.currency
+    account_type = user_profile.account_type
+    context = {'currency':currency, 'balance':balance, 'user_profile':user_profile, 'transactions':transactions, 'account_type':account_type}
     return render(request, 'bank_app/dashboard.html', context)
-
-
 
 
 @unauthenticated_user
