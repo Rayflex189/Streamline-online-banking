@@ -8,8 +8,10 @@ import string
 from cloudinary.models import CloudinaryField
 import uuid
 
-def generate_activation_token(self):
-    return uuid.uuid4().hex
+# Outside the class
+def generate_activation_token():
+    import uuid
+    return str(uuid.uuid4())
 
 def generate_code(length=6):
     characters = string.ascii_letters + string.digits
